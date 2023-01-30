@@ -2,15 +2,25 @@ const express = require("express");
 const router = express.Router();
 const videoUpload = require("../config/videoupload");
 require("dotenv").config();
-
-router.get("/", (req, res) => {
-  res.send("Getting api to chech APi is working");
+const video = require("../models/Video");
+router.get("/", async (req, res) => {
+  let videoData = await video.find();
+  res.json({
+    videoData,
+  });
 });
 
-router.post("/uploadVideo", videoUpload.single("video"), (req, res) => {
+router.post("/uploadVideo", videoUpload.single("video"), async (req, res) => {
   try {
     let url = req.protocol + "://" + req.get("host") + "/" + req.file.filename;
-    res.send(url);
+    const videoData = new video({
+      videoUrl: url,
+    });
+    await videoData.save();
+    res.json({
+      message: "Video uploaded successfully",
+      videoData,
+    });
   } catch (error) {
     res.json({
       message: error.message,

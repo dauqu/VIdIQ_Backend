@@ -2,17 +2,6 @@ let uuidv4 = require("uuid");
 let multer = require("multer");
 let path = require("path");
 var DIR = "./medias/";
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, DIR);
-//   },
-//   filename: (req, file, cb) => {
-//     const fileName = file.originalname.toLowerCase().split(" ").join("-");
-//     cb(null, uuidv4.v4() + "-" + fileName);
-//   },
-// });
-
-
 
 const videoStorage = multer.diskStorage({
   destination: DIR, // Destination to store video
@@ -36,6 +25,5 @@ const videoUpload = multer({
     cb(undefined, true);
   },
 });
- 
- 
+
 module.exports = videoUpload;

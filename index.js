@@ -15,7 +15,11 @@ app.get("/", (req, res) => {
 });
 
 //Loop of allowed origins
-const allowedOrigins = ["http://localhost:3000", "http://localhost:3001"];
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "https://vid-iq.vercel.app",
+];
 
 //CORS policy access
 app.use(
