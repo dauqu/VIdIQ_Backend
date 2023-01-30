@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const videoUpload = require("../config/videoupload");
+const videoUpload = require("./../config/videoupload");
 require("dotenv").config();
-const video = require("../models/Video");
+const video = require("./../models/VIdeo");
 router.get("/", async (req, res) => {
   let videoData = await video.find();
   res.json({
